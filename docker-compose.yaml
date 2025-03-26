@@ -13,7 +13,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
   g-scores:
-    build: .
+    build: ./backend
     container_name: g-scores-app
     ports:
       - "3000:3000"

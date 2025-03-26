@@ -14,6 +14,11 @@ const subjects = [
 ];
 
 class ScoreController {
+
+    async HelloWorld(req, res) { 
+        return res.status(200).json({ code: 200, message: "Hello World" });
+    }
+
     async checkScore(req, res) {
         const { number } = req.params;
         const score = await db.scores.findOne({ where: { number } });
