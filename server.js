@@ -1,15 +1,30 @@
 const express = require('express');
-const db = require('./src/db/models');
-const app = express();
 require('dotenv').config();
+const scoreRouters = require('./src/routes/scores');
 
-app.get('/', async (req, res) => {
-    const record = await db.scores.findOne({ where: { number: '01000001' } });
-    return res.json({ message: 'Hello World', record: record.toJSON() });
-});
+class App {
+    constructor(port) { 
+        this.app = express();
+        this.middlewares();
+        this.routes();
+        this.port = port;
+    }
 
-const PORT = process.env.PORT || 3000;
+    middlewares() {
+        this.app.use(express.json());
+    }
 
-app.listen(PORT, () => {
-    console.log(`Server running: http://localhost:${PORT}`);
-});
+    routes() {
+        this.app.use('/', scoreRouters);
+    }
+
+    start() {
+        this.app.listen(this.port, () => {
+            console.log(`Server is running: http://localhost:${this.port}`);
+        });
+    }
+}
+
+const port = process.env.PORT || 3000;
+const app = new App(port);
+app.start();
