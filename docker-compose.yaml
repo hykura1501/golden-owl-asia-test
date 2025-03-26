@@ -1,0 +1,35 @@
+version: '1.0'
+services:
+  db:
+    image: postgres:latest
+    container_name: g-scores-db
+    restart: always
+    environment:
+      POSTGRES_USER: g-scores
+      POSTGRES_PASSWORD: g-scores
+      POSTGRES_DB: g-scores
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  g-scores:
+    build: .
+    container_name: g-scores-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: g-scores
+      DB_PASSWORD: g-scores
+      DB_NAME: g-scores
+      DB_PORT: 5432
+    command: ["sh", "-c", "
+      sleep 5 && 
+      if [ \"$(npx sequelize-cli db:migrate:status | grep -c 'down')\" -gt 0 ]; then 
+        npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all; 
+      fi && 
+      npm start"]
+volumes:
+  db-data:
