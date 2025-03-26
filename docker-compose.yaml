@@ -12,9 +12,9 @@ services:
       - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
-  g-scores:
+  g-scores-backend:
     build: ./backend
-    container_name: g-scores-app
+    container_name: g-scores-backend
     ports:
       - "3000:3000"
     depends_on:
@@ -31,5 +31,16 @@ services:
         npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all; 
       fi && 
       npm start"]
+  g-scores-frontend:
+    build: ./frontend
+    container_name: g-scores-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - g-scores-backend
+    environment:
+      API_URL: http://g-scores-backend:3000
+      VITE_HOST: "0.0.0.0"
+    command: ["sh", "-c", "npm run dev"]
 volumes:
   db-data:

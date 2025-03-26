@@ -1,7 +1,7 @@
 FROM node:23
 
 # Create app directory
-WORKDIR /scores-backend
+WORKDIR /scores-frontend
 
 # Copy package.json and package-lock.json first
 COPY package.json package-lock.json ./
@@ -13,7 +13,7 @@ RUN npm install
 COPY . .
 
 # Expose the application port
-EXPOSE 3000
+EXPOSE 5173
 
 # Run the application
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
