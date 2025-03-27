@@ -1,6 +1,8 @@
 const express = require('express');
 require('dotenv').config();
 const scoreRouters = require('./src/routes/scores');
+const cors = require("cors");
+const corsOptions = require("./src/config/cors.js");
 
 class App {
     constructor(port) { 
@@ -12,6 +14,7 @@ class App {
 
     middlewares() {
         this.app.use(express.json());
+        this.app.use(cors(corsOptions));
     }
 
     routes() {

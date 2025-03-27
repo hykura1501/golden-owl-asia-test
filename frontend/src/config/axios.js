@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   withCredentials: true,
-  baseURL: "http://localhost:8000/api",
+  baseURL: "http://localhost:3000",
 });
 
 api.interceptors.request.use(
@@ -16,7 +16,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => {
-    return response;
+    return response.data;
   },
   (error) => {
     if (error.response) {

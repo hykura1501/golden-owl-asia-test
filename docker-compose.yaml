@@ -25,8 +25,9 @@ services:
       DB_PASSWORD: g-scores
       DB_NAME: g-scores
       DB_PORT: 5432
+      CORS_ALLOWED_ORIGIN: http://localhost:5173
     command: ["sh", "-c", "
-      sleep 5 && 
+      sleep 3 && 
       if [ \"$(npx sequelize-cli db:migrate:status | grep -c 'down')\" -gt 0 ]; then 
         npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all; 
       fi && 
@@ -39,7 +40,8 @@ services:
     depends_on:
       - g-scores-backend
     environment:
-      API_URL: http://g-scores-backend:3000
+      # API_URL: http://g-scores-backend:3000
+      VITE_API_ENDPOINT: http://localhost:3000
       VITE_HOST: "0.0.0.0"
     command: ["sh", "-c", "npm run dev"]
 volumes:
