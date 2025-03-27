@@ -12,12 +12,19 @@ function SearchScores() {
 	const [error, setError] = useState("")
 
 	const handleSubmit = async () => {
-		setError("")
-		const res = await api.get(`/check-score/${registrationNumber}`)
-		if (res?.code === 200) {
-			setStudentData(res.score)
-		} else {
+		try {
+			setError("")
+			const res = await api.get(`/check-score/${registrationNumber}`)
+
+			if (res?.code === 200) {
+				setStudentData(res.score)
+			} else {
+				setError("Student not found")
+				setStudentData(null)
+			}
+		} catch (error) {
 			setError("Student not found")
+			setStudentData(null)
 		}
 	}
 
@@ -28,7 +35,7 @@ function SearchScores() {
 		return "text-red-600 dark:text-red-400"
 	}
 	return (
-		<div className="min-h-screen px-4 sm:px-6 lg:px-8">
+		<div className="h-full px-4 sm:px-6 lg:px-8">
 			<div className="max-w-4xl mx-auto space-y-8">
 				<Card className="shadow-lg">
 					<CardHeader className="bg-primary/5">

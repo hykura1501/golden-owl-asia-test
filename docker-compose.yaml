@@ -40,8 +40,7 @@ services:
     depends_on:
       - g-scores-backend
     environment:
-      # API_URL: http://g-scores-backend:3000
-      VITE_API_ENDPOINT: http://localhost:3000
+      VITE_API_URL: http://localhost:3000
       VITE_HOST: "0.0.0.0"
     command: ["sh", "-c", "npm run dev"]
 volumes:
