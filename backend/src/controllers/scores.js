@@ -15,7 +15,7 @@ const subjects = [
 
 class ScoreController {
 
-    async HelloWorld(req, res) { 
+    async HelloWorld(req, res) {
         return res.status(200).json({ code: 200, message: "Hello World" });
     }
 
@@ -75,12 +75,24 @@ class ScoreController {
             }
         });
 
-        const statistics = {
-            excellent,
-            good,
-            medium,
-            bad,
-        };
+        const statistics = [
+            {
+                type: "Excellent",
+                quantity: excellent
+            },
+            {
+                type: "Good",
+                quantity: good
+            },
+            {
+                type: "Medium",
+                quantity: medium
+            },
+            {
+                type: "Bad",
+                quantity: bad
+            }
+        ]
 
         return res.status(200).json({ code: 200, statistics: statistics, subject: subject });
     }

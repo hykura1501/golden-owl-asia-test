@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -15,7 +15,6 @@ body {
 
 body {
   width: 100%;
-  font-family: "Poppins", serif;
   color: #000;
   scroll-behavior: smooth;
   font-size: 16px;

@@ -11,10 +11,7 @@ export default {
   theme: {
   	extend: {
   		fontFamily: {
-  			sans: [
-  				'Inter',
-                    ...fontFamily.sans
-                ]
+			rubik: ["Rubik", "sans-serif"],
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

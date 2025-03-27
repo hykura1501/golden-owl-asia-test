@@ -1,13 +1,16 @@
 import Header from "./components/Header";
-import Footer from "./components/Footer";
-
-function Layout({ children }) {
+import Navbar from "./components/SideBar";
+function Layout({user, children, setUser }) {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header
-      />
-      <div className="mt-20">{children}</div>
-      <Footer />
+    // h-screen: Take the full height of the screen
+    <div className="flex overflow-hidden">
+      <Navbar />
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <Header user={user} setUser={setUser}/>
+        <main className="flex-1 overflow-y-auto bg-background px-4 py-6">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
