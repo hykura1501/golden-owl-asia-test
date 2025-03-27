@@ -78,19 +78,19 @@ class ScoreController {
         const statistics = [
             {
                 type: "Excellent",
-                quantity: excellent
+                Quantity: excellent
             },
             {
                 type: "Good",
-                quantity: good
+                Quantity: good
             },
             {
                 type: "Medium",
-                quantity: medium
+                Quantity: medium
             },
             {
                 type: "Bad",
-                quantity: bad
+                Quantity: bad
             }
         ]
 
