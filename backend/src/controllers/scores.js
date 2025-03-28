@@ -14,11 +14,11 @@ const subjects = [
 ];
 
 class ScoreController {
-
+	// [GET] / (test server)
 	async HelloWorld(req, res) {
 		return res.status(200).json({ code: 200, message: "Hello World" });
 	}
-
+	// [POST] /check-score/:number
 	async checkScore(req, res) {
 		const { number } = req.params;
 		const score = await db.scores.findOne({ where: { number } });
@@ -27,7 +27,7 @@ class ScoreController {
 		}
 		return res.status(200).json({ code: 200, score: score });
 	}
-
+	// [POST] /statistics/:subject
 	async getStatistics(req, res) {
 		const { subject } = req.params;
 		if (!subjects.includes(subject)) {
@@ -96,7 +96,7 @@ class ScoreController {
 
 		return res.status(200).json({ code: 200, statistics: statistics, subject: subject });
 	}
-
+	// [GET] /top-students
 	async getTopStudents(req, res) {
 		const topStudents = await db.scores.findAll({
 			attributes: ['number', 'math', 'literature', 'foreignLanguage', 'physics', 'chemistry', 'biology', 'history', 'geography', 'civicEducation', [db.sequelize.literal('(math + physics + chemistry)'), 'total_score']],

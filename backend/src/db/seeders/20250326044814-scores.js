@@ -19,7 +19,7 @@ module.exports = {
         history: parseFloat(history) || null,
         geography: parseFloat(geography) || null,
         civicEducation: parseFloat(civicEducation) || null,
-        foreignLanguageId: foreignLanguageId || null
+        foreignLanguageId: foreignLanguageId?.trim() || null
       }
     })
 

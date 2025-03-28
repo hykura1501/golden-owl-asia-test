@@ -105,7 +105,7 @@ function SearchScores() {
 										</TableCell>
 									</TableRow>
 									<TableRow>
-										<TableCell className="font-bold px-4">Foreign Language</TableCell>
+										<TableCell className="font-bold px-4">{`Foreign Language (${studentData?.foreignLanguageId})`}</TableCell>
 										<TableCell className={`text-right px-4 ${getScoreColor(studentData?.foreignLanguage)}`}>
 											{studentData?.foreignLanguage || "-"}
 										</TableCell>
