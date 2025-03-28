@@ -1,4 +1,5 @@
 # Golden Owl Asia Test - G-Scores
+- **Link Demo**: https://youtu.be/-239h3XKMWo
 # API Documentation
 
 ## 1. Test Server
